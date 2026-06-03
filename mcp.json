@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "atc": {
+      "type": "stdio",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "cwd": "d:/AI Challenge/edu-ai-challenge-2026/task-4",
+      "env": {
+        "ATC_RUNWAY_LENGTHS": "2500,3000,3500",
+        "ATC_RUNWAY_COUNT": "3",
+        "ATC_GATE_COUNT": "4",
+        "ATC_GROUND_CREW_COUNT": "3",
+        "ATC_SEPARATION_TAKEOFF_MINUTES": "2",
+        "ATC_SEPARATION_LANDING_MINUTES": "3",
+        "ATC_SEPARATION_MIXED_MINUTES": "4",
+        "ATC_GATE_TURNAROUND_MINUTES": "45",
+        "ATC_DEPENDENCY_BUFFER_MINUTES": "30",
+        "ATC_MAX_SCHEDULING_HORIZON_MINUTES": "1440"
+      }
+    }
+  }
+}
