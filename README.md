@@ -30,7 +30,7 @@ Configuration is loaded from **environment variables** (via `.env` when using `y
 .\scripts\start-inspector.ps1
 ```
 
-Open **http://127.0.0.1:6274** (auth disabled in that script). Config is in [`mcp.json`](./mcp.json) (`env` block).
+Open **http://127.0.0.1:6274** (auth disabled in that script). Config is in [`mcp.json`](./mcp.json) (`cwd` and `env` blocks). Set `cwd` to the absolute path of this repo on your machine so `yarn run dev` and `.env` resolve correctly.
 
 **Tips**
 

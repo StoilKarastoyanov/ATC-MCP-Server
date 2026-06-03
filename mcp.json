@@ -4,6 +4,7 @@
       "type": "stdio",
       "command": "yarn",
       "args": ["run", "dev"],
+      "cwd": "D:/Workspace/atc-mcp-server",
       "env": {
         "ATC_RUNWAY_LENGTHS": "2500,3000,3500",
         "ATC_RUNWAY_COUNT": "3",
