@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Automated acceptance checks for task-4 validation scenarios.
- * Run: npm run validate
+ * Automated acceptance checks for validation scenarios.
+ * Run: yarn validate
  */
 import { loadAirportConfig } from "../src/config/index.js";
 import { createAirportState } from "../src/domain/index.js";

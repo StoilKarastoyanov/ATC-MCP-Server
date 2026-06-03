@@ -1,4 +1,4 @@
-# Task 4 — ATC MCP Server
+# ATC MCP Server
 
 AI-ready **Air Traffic Control** server using the [Model Context Protocol](https://modelcontextprotocol.io/). It schedules arrivals and departures, respects runways/gates/ground crew limits, handles flight dependencies and cancellations, and exposes airport state through MCP **tools** and **resources**.
 
@@ -7,28 +7,26 @@ AI-ready **Air Traffic Control** server using the [Model Context Protocol](https
 ## Quick start
 
 ```bash
-cd task-4
-npm install
+yarn install
 cp .env.example .env    # first time; .env may already exist for local dev
-npm run build
-npm test                # 26+ unit tests
-npm run validate        # acceptance scenarios 1–3 + edge cases
+yarn build
+yarn test               # 26+ unit tests
+yarn validate           # acceptance scenarios 1-3 + edge cases
 ```
 
 Run the server (stdio MCP):
 
 ```bash
-npm run dev
+yarn dev
 ```
 
-Configuration is loaded from **environment variables** (via `.env` when using `npm run dev` / `npm start`). Invalid config **exits at startup** with a clear message.
+Configuration is loaded from **environment variables** (via `.env` when using `yarn dev` / `yarn start`). Invalid config **exits at startup** with a clear message.
 
 ---
 
 ## MCP Inspector (recommended UI)
 
 ```powershell
-cd task-4
 .\scripts\start-inspector.ps1
 ```
 
@@ -39,7 +37,7 @@ Open **http://127.0.0.1:6274** (auth disabled in that script). Config is in [`mc
 - Use **JSON** for tool arguments; `dependencies` must be an array, e.g. `["AA100"]`.
 - `minRunwayLengthMeters`: leave at **0** or omit in JSON = no runway requirement.
 - **Reconnect** Inspector to restart the server and clear the in-memory queue.
-- MCP may show “Success” even when a tool returns `isError: true` — read the response text.
+- MCP may show “Success” even when a tool returns `isError: true` - read the response text.
 
 ---
 
@@ -68,12 +66,12 @@ Copy [`.env.example`](./.env.example) to `.env` for local development.
 
 | Tool | Arguments | Description |
 |------|-----------|-------------|
-| `ping` | — | Health check, config summary, flight counts |
+| `ping` | - | Health check, config summary, flight counts |
 | `submit_flight` | `flightNumber`, `operationType` (`arrival` \| `departure`), `priority` (`high` \| `medium` \| `low`), optional `dependencies[]`, optional `minRunwayLengthMeters` | Add flight to queue |
-| `generate_schedule` | — | Replace active schedule from queue + config |
-| `get_airport_status` | — | Operational snapshot (usage, constraints, issues) |
+| `generate_schedule` | - | Replace active schedule from queue + config |
+| `get_airport_status` | - | Operational snapshot (usage, constraints, issues) |
 | `cancel_flight` | `flightNumber` | Cancel flight, block dependents, auto-regenerate schedule if one exists |
-| `analyze_bottleneck` | — | Longest scheduled dependency chain (critical path) |
+| `analyze_bottleneck` | - | Longest scheduled dependency chain (critical path) |
 
 ---
 
@@ -92,7 +90,7 @@ Copy [`.env.example`](./.env.example) to `.env` for local development.
 
 Reconnect for a **clean queue** before each scenario.
 
-### 1 — Morning Rush
+### 1 - Morning Rush
 
 Submit:
 
@@ -107,7 +105,7 @@ Then `generate_schedule` → read `flight-queue`, `operation-timeline`, `runway-
 
 **Expect:** all four `scheduled`; no overlapping runway windows; high-priority arrival not after low when competing.
 
-### 2 — Heavy Hauler
+### 2 - Heavy Hauler
 
 ```json
 {"flightNumber":"HEAVY1","operationType":"departure","priority":"high","minRunwayLengthMeters":5000}
@@ -117,7 +115,7 @@ Optional: add a normal flight without `minRunwayLengthMeters`. `generate_schedul
 
 **Expect:** `HEAVY1` → `unscheduled`, reason like *No suitable runway available*; others can still schedule.
 
-### 3 — Connecting Flight
+### 3 - Connecting Flight
 
 ```json
 {"flightNumber":"IN1","operationType":"arrival","priority":"high"}
@@ -136,7 +134,7 @@ Optional: add a normal flight without `minRunwayLengthMeters`. `generate_schedul
 | Cancel chain | Schedule IN1+OUT1, `cancel_flight` IN1 | OUT1 `blocked` |
 | Bad config | Remove `ATC_GATE_COUNT`, restart server | Startup error |
 
-**Automated:** `npm run validate` runs scenarios 1–3 and edge checks in process (no Inspector).
+**Automated:** `yarn validate` runs scenarios 1-3 and edge checks in process (no Inspector).
 
 ---
 
@@ -160,12 +158,12 @@ scripts/
 
 | Command | Purpose |
 |---------|---------|
-| `npm run dev` | Run server with tsx + `.env` |
-| `npm run build` | Compile to `dist/` |
-| `npm start` | Run compiled server |
-| `npm test` | Unit tests |
-| `npm run validate` | Acceptance scenario script |
-| `npm run typecheck` | TypeScript check |
+| `yarn dev` | Run server with tsx + `.env` |
+| `yarn build` | Compile to `dist/` |
+| `yarn start` | Run compiled server |
+| `yarn test` | Unit tests |
+| `yarn validate` | Acceptance scenario script |
+| `yarn typecheck` | TypeScript check |
 
 ---
 
@@ -175,9 +173,9 @@ scripts/
 {
   "mcpServers": {
     "atc": {
-      "command": "npm",
+      "command": "yarn",
       "args": ["run", "dev"],
-      "cwd": "D:/example/ai-challenge/task-4",
+      "cwd": "/path/to/atc-mcp-server",
       "env": {
         "ATC_RUNWAY_LENGTHS": "2500,3000,3500",
         "ATC_GATE_COUNT": "4",

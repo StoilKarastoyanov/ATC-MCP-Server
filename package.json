@@ -1,6 +1,7 @@
 {
   "name": "atc-mcp-server",
   "version": "0.1.0",
+  "packageManager": "yarn@4.10.3",
   "description": "AI-ready Air Traffic Control MCP server",
   "type": "module",
   "main": "dist/index.js",

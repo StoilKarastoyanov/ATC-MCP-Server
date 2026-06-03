@@ -2,9 +2,8 @@
   "mcpServers": {
     "atc": {
       "type": "stdio",
-      "command": "npm",
+      "command": "yarn",
       "args": ["run", "dev"],
-      "cwd": "d:/AI Challenge/edu-ai-challenge-2026/task-4",
       "env": {
         "ATC_RUNWAY_LENGTHS": "2500,3000,3500",
         "ATC_RUNWAY_COUNT": "3",

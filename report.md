@@ -1,4 +1,4 @@
-# Task 4 — ATC MCP Server — Report
+# ATC MCP Server - Report
 
 ## Scheduling approach
 
@@ -49,8 +49,8 @@ Among **scheduled** flights only, we build dependency edges (dep → dependent) 
 - **Language:** TypeScript on Node 20+
 - **MCP:** `@modelcontextprotocol/sdk` (`McpServer`, stdio transport)
 - **Validation:** Zod for tool inputs and config parsing
-- **Tests:** Node built-in test runner (`npm test`, 26+ tests)
-- **Acceptance:** `npm run validate` script for scenarios 1–3 and edge cases
+- **Tests:** Node built-in test runner (`yarn test`, 26+ tests)
+- **Acceptance:** `yarn validate` script for scenarios 1-3 and edge cases
 - **Local testing:** MCP Inspector via `scripts/start-inspector.ps1` and `mcp.json`
 
 ---
@@ -60,7 +60,7 @@ Among **scheduled** flights only, we build dependency edges (dep → dependent) 
 - Topological ordering plus priority waves produced correct connecting-flight ordering and sensible Morning Rush priority behavior.
 - Fail-fast config at startup caught misconfigured airports before any client connected.
 - Separating **tools** (mutate state) from **resources** (read snapshots) matched how AI clients discover and use the server.
-- `npm run validate` gave fast regression signal without driving the UI manually.
+- `yarn validate` gave fast regression signal without driving the UI manually.
 
 ---
 
@@ -68,6 +68,6 @@ Among **scheduled** flights only, we build dependency edges (dep → dependent) 
 
 - **Inspector UX:** Optional numeric fields default to `0`; documenting “0 means none” was necessary. Dependency arrays must be real JSON arrays, not informal text.
 - **Cancel without reschedule:** Early versions only blocked dependents; auto-`generate_schedule` after cancel aligned better with the written requirement.
-- **Gate overlap tests:** Logic prevents gate conflicts via turnaround tracking; automated tests emphasized runway overlap first; gate overlap checks were added to `npm run validate`.
+- **Gate overlap tests:** Logic prevents gate conflicts via turnaround tracking; automated tests emphasized runway overlap first; gate overlap checks were added to `yarn validate`.
 - **No persistence:** Restarting the MCP process clears all flights (expected for this task).
 - **No physics:** Speed, weight, and weather are out of scope; only time windows and capacity matter.
